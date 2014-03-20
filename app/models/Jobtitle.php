@@ -22,4 +22,22 @@ class Jobtitle extends Morphaworks\Database\Model {
         'title' => 'required|unique:jobprefixes,title,:id',
     );
 
+    /**
+     * Many-to-One relation with Jobprefix
+     * @return Jobprefix
+     */
+    public function jobprefix()
+    {
+        return $this->belongsTo('Jobprefix');
+    }
+
+    /**
+     * Many-to-One relation with Functionalscope
+     * @return Functionalscope
+     */
+    public function functionalscope()
+    {
+        return $this->belongsTo('Functionalscope');
+    }
+
 }

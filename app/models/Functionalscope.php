@@ -21,4 +21,13 @@ class Functionalscope extends Morphaworks\Database\Model {
         'title' => 'required|unique:functionalscopes,title,:id',
     );
 
+    /**
+     * One-to-Many relations with Job titles
+     * @return  Jobtitle
+     */
+    public function jobtitles()
+    {
+        return $this->hasMany('Jobtitle');
+    }
+
 }

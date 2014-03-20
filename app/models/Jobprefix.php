@@ -21,4 +21,12 @@ class Jobprefix extends Morphaworks\Database\Model {
         'title' => 'required|unique:jobprefixes,title,:id',
     );
 
+    /**
+     * One-to-Many relations with Jobtitle
+     * @return Jobtitle
+     */
+    public function jobtitles()
+    {
+        return $this->hasMany('Jobtitle');
+    }
 }
