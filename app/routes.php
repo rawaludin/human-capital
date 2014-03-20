@@ -15,3 +15,8 @@ Route::get('/', function()
 {
 	return View::make('hello');
 });
+// Resource controller
+Route::resource('jobprefixes', 'JobprefixesController');
+
+// Model binding for resources controller
+Route::model('jobprefixes', 'Jobprefix');
