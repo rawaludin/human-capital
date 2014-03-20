@@ -15,9 +15,11 @@ class CreateJobtitlesTable extends Migration {
 		Schema::create('jobtitles', function(Blueprint $table)
 		{
 			$table->increments('id');
+			$table->string('code')->unique();
+			$table->string('title')->unique();
 			$table->integer('jobprefix_id')->unsigned();
 			$table->integer('functionalscope_id')->unsigned();
-			$table->string('title')->unique();
+			$table->boolean('status');
 			$table->foreign('functionalscope_id')->references('id')->on('functionalscopes')
 				  ->onUpdate('cascade')->onDelete('restrict');
 			$table->foreign('jobprefix_id')->references('id')->on('jobprefixes')

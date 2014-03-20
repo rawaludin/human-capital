@@ -15,8 +15,8 @@ class CreateFunctionalscopesTable extends Migration {
 		Schema::create('functionalscopes', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->string('code');
-			$table->string('title');
+			$table->string('code')->unique();
+			$table->string('title')->unique();
 			$table->timestamps();
 		});
 	}
