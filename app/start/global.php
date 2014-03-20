@@ -51,6 +51,12 @@ App::error(function(Exception $exception, $code)
 	Log::error($exception);
 });
 
+// Register 404 page
+App::missing(function($exception)
+{
+    return Response::view('errors.notfound', array(), 404);
+});
+
 /*
 |--------------------------------------------------------------------------
 | Maintenance Mode Handler
