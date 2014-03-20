@@ -1,6 +1,6 @@
 <?php
 
-class Jobprefix extends Morpaworks\Database\Model {
+class Jobprefix extends Morphaworks\Database\Model {
     /**
      * white list column for mass asignment
      * ref : http://laravel.com/docs/eloquent#mass-assignment
