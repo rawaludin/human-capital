@@ -27,7 +27,11 @@ class JobprefixesController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+		// generate view for this actions
+		// ref : app/views/jobprefixes/create.blade.php
+		$this->layout->content = View::make('jobprefixes.create',array(
+			'previousUrl' => $this->getPreviousUrl(route('jobprefixes.index'))
+		));
 	}
 
 	/**
@@ -37,7 +41,26 @@ class JobprefixesController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		// Get all $_POST data, then create new jobprefix object
+		$jobprefix = new Jobprefix(Input::all());
+
+		// Validate jobprefix with rule set in model
+		// ref : app/models/jobprefix.php
+		if (!$jobprefix->validate()) {
+			// if not validate, return flaseh error message
+			// ref : app/controllers/BaseController.php
+            return $this->formError($jobprefix);
+        }
+
+        // save jobprefix to database
+        $jobprefix->save();
+
+        // Redirect to previous page
+        $targetUrl = Session::get('prevUrl'); // check BaseController@getPreviousUrl
+        $redirect = Redirect::back(301)->setTargetUrl($targetUrl)
+            ->with('success-message', "Job Prefix <b>$jobprefix->title</b> berhasil dibuat!");
+
+        return $redirect;
 	}
 
 	/**
@@ -106,6 +129,27 @@ class JobprefixesController extends \BaseController {
                 return $html;
             })
             ->make();
+	}
+
+	/**
+	 * API for model field frontend validation
+	 * @return json
+	 */
+	public function validateField() {
+		// get field to validate
+		$field = key(Input::query());
+
+		// create validator
+		$validator = Validator::make(Input::all(), Jobprefix::$rules);
+		$messages = $validator->messages();
+		if ($messages->has($field))
+		{
+			// return error message
+		    return json_encode(array("error"=>$messages->first($field)));
+		} else {
+			// return true
+			return json_encode(array("success"=>''));
+		}
 	}
 
 }

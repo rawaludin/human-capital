@@ -17,7 +17,7 @@ class Model extends Eloquent
      *
      * @var Array
      */
-    protected static $rules = array();
+    public static $rules = array();
 
     /**
      * Validation messages

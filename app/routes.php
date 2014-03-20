@@ -23,4 +23,10 @@ Route::model('jobprefixes', 'Jobprefix');
 
 // API for datatable
 Route::get('api/jobprefixes',
-        array('as'=>'api.jobprefixes', 'uses'=>'JobprefixesController@getDatatable'));
+    array('as'=>'api.jobprefixes',
+            'uses'=>'JobprefixesController@getDatatable'));
+
+// API for parsley validate
+Route::get('api/jobprefixes/validatecode',
+    array('as'=>'api.jobprefixesvalidatecode',
+            'uses'=>'JobprefixesController@validateField'));

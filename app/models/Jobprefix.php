@@ -14,7 +14,7 @@ class Jobprefix extends Morphaworks\Database\Model {
      *       http://laravel.com/docs/validation
      * @var array
      */
-    protected static $rules = array(
+    public static $rules = array(
         // Validation rule: code field is required and must unique in jobprefixes
         // table in column code. But ignore code value for given id (for update)
         'code' => 'required|unique:jobprefixes,code,:id',
