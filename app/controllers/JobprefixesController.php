@@ -76,13 +76,19 @@ class JobprefixesController extends \BaseController {
 
 	/**
 	 * Show the form for editing the specified resource.
+	 * This form done by model binding.
 	 *
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit(Jobprefix $jobprefixes)
 	{
-		//
+		// generate view for this actions
+		// ref : app/views/jobprefixes/edit.blade.php
+		$this->layout->content = View::make('jobprefixes.edit', array(
+		    'jobprefix' => $jobprefixes,
+	    'previousUrl'=>$this->getPreviousUrl(route('jobprefixes.index'))
+	));
 	}
 
 	/**
@@ -91,9 +97,29 @@ class JobprefixesController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(Jobprefix $jobprefixes)
 	{
-		//
+		// update all field
+		$jobprefixes->fill(Input::all());
+
+		// Validate jobprefix with rule set in model
+		// ref : app/models/jobprefix.php
+		if (!$jobprefixes->validate()) {
+			// if not validate, return flaseh error message
+			// ref : app/controllers/BaseController.php
+	    return $this->formError($jobprefixes);
+	}
+
+	// save jobprefix to database
+	$jobprefixes->save();
+
+	// Redirect to previous page
+	$targetUrl = Session::get('prevUrl'); // check BaseController@getPreviousUrl
+	$redirect = Redirect::back(301)->setTargetUrl($targetUrl)
+	    ->with('success-message', "Job Prefix <b>$jobprefixes->title</b> berhasil diperbaharui!");
+
+	return $redirect;
+
 	}
 
 	/**
