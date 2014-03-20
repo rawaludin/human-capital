@@ -58,7 +58,7 @@ class FunctionalscopesController extends \BaseController {
         // Redirect to previous page
         $targetUrl = Session::get('prevUrl'); // check BaseController@getPreviousUrl
         $redirect = Redirect::back(301)->setTargetUrl($targetUrl)
-            ->with('success-message', "Job Prefix <b>$functionalscope->title</b> berhasil dibuat!");
+            ->with('success-message', "Functional Scope <b>$functionalscope->title</b> berhasil dibuat!");
 
         return $redirect;
 	}
@@ -77,23 +77,47 @@ class FunctionalscopesController extends \BaseController {
 	/**
 	 * Show the form for editing the specified resource.
 	 *
-	 * @param  int  $id
+	 * @param  Functionalscope  $functionalscopes
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit(Functionalscope $functionalscopes)
 	{
-		//
+		// generate view for this actions
+		// ref : app/views/functionalscopes/edit.blade.php
+		$this->layout->content = View::make('functionalscopes.edit', array(
+		    'functionalscope' => $functionalscopes,
+            'previousUrl'=>$this->getPreviousUrl(route('functionalscopes.index'))
+        ));
 	}
 
 	/**
 	 * Update the specified resource in storage.
 	 *
-	 * @param  int  $id
+	 * @param  Functionalscope  $functionalscopes
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(Functionalscope $functionalscopes)
 	{
-		//
+		// update all field
+		$functionalscopes->fill(Input::all());
+
+		// Validate functionalscope with rule set in model
+		// ref : app/models/functionalscope.php
+		if (!$functionalscopes->validate()) {
+			// if not validate, return flaseh error message
+			// ref : app/controllers/BaseController.php
+            return $this->formError($functionalscopes);
+        }
+
+        // save functionalscope to database
+        $functionalscopes->save();
+
+        // Redirect to previous page
+        $targetUrl = Session::get('prevUrl'); // check BaseController@getPreviousUrl
+        $redirect = Redirect::back(301)->setTargetUrl($targetUrl)
+            ->with('success-message', "Functional Scope <b>$functionalscopes->title</b> berhasil diperbaharui!");
+
+        return $redirect;
 	}
 
 	/**
