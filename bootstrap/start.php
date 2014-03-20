@@ -25,8 +25,16 @@ $app = new Illuminate\Foundation\Application;
 */
 
 $env = $app->detectEnvironment(array(
-
+    // Untuk membuat konfigurasi ubah "your-machine-name" menjadi hostname laptop
+    // Anda. Jika dibutuhkan bisa juga dibuat konfigurasi per machinge. Caranya:
+    // 1. buat konfigurasi disini, misal: 'didin' => array('didin-laptop'),
+    // 2. Buat folder app/config/didin
+    // 3. Buat file baru untuk konfigurasi sesuai keinginan. Contoh, jika ingin
+    //    konfigurasi database, copy file app/config/database.php ke
+    //    app/config/didin/database.php ubah isian sesuai keperluan
+    // Ref : http://laravel.com/docs/configuration
 	'local' => array('your-machine-name'),
+    'morphaworks' => array('MorphaWorks')
 
 ));
 
@@ -63,7 +71,7 @@ require $framework.'/Illuminate/Foundation/start.php';
 | Load Morphaworks helpers
 |--------------------------------------------------------------------------
 */
-require $app['path.base'].'/app/Morphaworks/Helpers/backendHelper.php';
+require $app['path.base'].'/app/Morphaworks/Helpers/frontendHelper.php';
 
 /*
 |--------------------------------------------------------------------------
