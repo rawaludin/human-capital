@@ -18,16 +18,20 @@ Route::get('/', function()
 // Resource controller
 Route::resource('jobprefixes', 'JobprefixesController');
 Route::resource('functionalscopes', 'FunctionalscopesController');
+Route::resource('jobtitles', 'JobtitlesController');
 
 // Model binding for resources controller
 Route::model('jobprefixes', 'Jobprefix');
 Route::model('functionalscopes', 'Functionalscope');
+Route::model('jobtitles', 'Jobtitle');
 
 // API for datatable
 Route::get('api/jobprefixes',
     array('as'=>'api.jobprefixes', 'uses'=>'JobprefixesController@getDatatable'));
 Route::get('api/functionalscopes',
     array('as'=>'api.functionalscopes', 'uses'=>'FunctionalScopesController@getDatatable'));
+Route::get('api/jobtitles',
+    array('as'=>'api.jobtitles', 'uses'=>'JobtitlesController@getDatatable'));
 
 // API for parsley validate
 Route::get('api/jobprefixes/validatecode',
