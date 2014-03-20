@@ -102,9 +102,17 @@ class FunctionalscopesController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy(Functionalscope $functionalscopes)
 	{
-		//
+		// Get old title for flash message
+		$title = $functionalscopes->title;
+
+		// delete resource from database
+		$functionalscopes->delete();
+
+		// redirect
+		return Redirect::to('functionalscopes')
+			->with('success-message', 'Functional Scope <b>'.$title.'</b> berhasil dihapus.');
 	}
 
 	/**

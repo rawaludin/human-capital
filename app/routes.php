@@ -21,7 +21,7 @@ Route::resource('functionalscopes', 'FunctionalscopesController');
 
 // Model binding for resources controller
 Route::model('jobprefixes', 'Jobprefix');
-Route::model('functionalscopes', 'Functionalscopes');
+Route::model('functionalscopes', 'Functionalscope');
 
 // API for datatable
 Route::get('api/jobprefixes',
