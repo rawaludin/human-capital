@@ -84,4 +84,28 @@ class JobprefixesController extends \BaseController {
 		//
 	}
 
+	/**
+	 * Get specified data for datatable
+	 * ref : https://github.com/Chumper/Datatable
+	 * @return json
+	 */
+	public function getDatatable()
+	{
+		return Datatable::collection(Jobprefix::all())
+            ->showColumns('id', 'code', 'title')
+            ->searchColumns('code', 'title')
+            ->orderColumns('code','title')
+            ->addColumn('action', function ($model) {
+                $html = '<a href='.route('jobprefixes.show', ['jobprefixes'=>$model->id]).'><i class="fa fa-eye fa-hover" data-toggle="tooltip" data-placement="top" title="View"></i></a>';
+                $html .= '<a href='.route('jobprefixes.edit', ['jobprefixes'=>$model->id]).' class="m-l-sm"><i class="fa fa-edit fa-hover" data-toggle="tooltip" data-placement="top" title="Edit"></i></a>';
+                $html .= Form::open(array('url' => "jobprefixes/$model->id", 'role' => 'form', 'method'=>'delete','class'=>'form-inline','style="display:inline;"'));
+                $html .=   Form::submit('Delete', array('class' => 'hidden'));
+                $html .= '<a href="#" data-confirm="Are you sure to delete this project?" class="m-l-sm js-delete-confirm"><i class="fa fa-times fa-hover" data-toggle="tooltip" data-placement="top" title="Delete"></i></a>';
+                $html .= Form::close();
+
+                return $html;
+            })
+            ->make();
+	}
+
 }

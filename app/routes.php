@@ -20,3 +20,7 @@ Route::resource('jobprefixes', 'JobprefixesController');
 
 // Model binding for resources controller
 Route::model('jobprefixes', 'Jobprefix');
+
+// API for datatable
+Route::get('api/jobprefixes',
+        array('as'=>'api.jobprefixes', 'uses'=>'JobprefixesController@getDatatable'));
