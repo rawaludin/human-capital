@@ -2,6 +2,11 @@
 
 class JobprefixesController extends \BaseController {
 
+	/**
+     * The layout that should be used for responses.
+     * ref : app/views/layouts/dashboard.blade.php
+     */
+    protected $layout = 'layouts.dashboard';
 
 	/**
 	 * Display a listing of the resource.
@@ -10,7 +15,9 @@ class JobprefixesController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		// generate view for this actions
+		// ref : app/views/jobprefixes/index.blade.php
+		$this->layout->content = View::make('jobprefixes.index');
 	}
 
 	/**
