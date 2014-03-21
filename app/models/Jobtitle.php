@@ -2,11 +2,11 @@
 
 class Jobtitle extends Morphaworks\Database\Model {
     /**
-     * white list column for mass asignment
+     * black list column for mass asignment
      * ref : http://laravel.com/docs/eloquent#mass-assignment
      * @var array
      */
-    protected $fillable = ['jobprefix_id', 'functionalscope_id', 'title'];
+    protected $guarded = [];
 
     /**
      * Model validation rules
@@ -19,7 +19,8 @@ class Jobtitle extends Morphaworks\Database\Model {
         // table on column id
         'jobprefix_id' => 'required|exists:jobprefixes,id',
         'functionalscope_id' => 'required|exists:functionalscopes,id',
-        'title' => 'required|unique:jobprefixes,title,:id',
+        'code' => 'required|unique:jobtitles,code,:id',
+        'title' => 'required|unique:jobtitles,title,:id',
     );
 
     /**

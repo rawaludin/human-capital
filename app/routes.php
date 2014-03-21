@@ -38,3 +38,5 @@ Route::get('api/jobprefixes/validatecode',
     array('as'=>'api.jobprefixesvalidatecode', 'uses'=>'JobprefixesController@validateField'));
 Route::get('api/functionalscopes/validate',
     array('as'=>'api.functionalscopes.validate', 'uses'=>'FunctionalscopesController@validateField'));
+Route::get('api/jobtitles/validate',
+    array('as'=>'api.jobtitles.validate', 'uses'=>'JobtitlesController@validateField'));

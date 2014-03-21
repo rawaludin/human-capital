@@ -16,7 +16,7 @@ class JobtitlesController extends \BaseController {
 	public function index()
 	{
 		// generate view for this actions
-		// ref : app/views/jobprefixes/index.blade.php
+		// ref : app/views/jobtitles/index.blade.php
 		$this->layout->content = View::make('jobtitles.index');
 	}
 
@@ -27,7 +27,11 @@ class JobtitlesController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+		// generate view for this actions
+        // ref : app/views/jobtitles/create.blade.php
+        $this->layout->content = View::make('jobtitles.create',array(
+            'previousUrl' => $this->getPreviousUrl(route('jobtitles.index'))
+        ));
 	}
 
 	/**
@@ -37,7 +41,26 @@ class JobtitlesController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		// Get all $_POST data, then create new jobtitle object
+        $jobtitle = new Jobtitle(Input::all());
+
+        // Validate jobtitle with rule set in model
+        // ref : app/models/jobtitle.php
+        if (!$jobtitle->validate()) {
+            // if not validate, return flaseh error message
+            // ref : app/controllers/BaseController.php
+            return $this->formError($jobtitle);
+        }
+
+        // save jobtitle to database
+        $jobtitle->save();
+
+        // Redirect to previous page
+        $targetUrl = Session::get('prevUrl'); // check BaseController@getPreviousUrl
+        $redirect = Redirect::back(301)->setTargetUrl($targetUrl)
+            ->with('success-message', "Job Title <b>$jobtitle->title</b> berhasil dibuat!");
+
+        return $redirect;
 	}
 
 	/**
@@ -105,8 +128,8 @@ class JobtitlesController extends \BaseController {
             ->searchColumns('title', 'jobprefix', 'functionalscope')
             ->orderColumns('title', 'jobprefix', 'functionalscope')
             ->addColumn('action', function ($model) {
-                $html = '<a href='.route('jobprefixes.edit', ['jobprefixes'=>$model->id]).' class="m-l-sm"><i class="fa fa-edit fa-hover" data-toggle="tooltip" data-placement="top" title="Ubah"></i></a>';
-                $html .= Form::open(array('url' => "jobprefixes/$model->id", 'role' => 'form', 'method'=>'delete','class'=>'form-inline','style="display:inline;"'));
+                $html = '<a href='.route('jobtitles.edit', ['jobtitles'=>$model->id]).' class="m-l-sm"><i class="fa fa-edit fa-hover" data-toggle="tooltip" data-placement="top" title="Ubah"></i></a>';
+                $html .= Form::open(array('url' => "jobtitles/$model->id", 'role' => 'form', 'method'=>'delete','class'=>'form-inline','style="display:inline;"'));
                 $html .=   Form::submit('Delete', array('class' => 'hidden'));
                 $html .= '<a href="#" data-confirm="Anda yakin akan menghapus job prefix '.$model->title.' ?" class="m-l-sm js-delete-confirm"><i class="fa fa-times fa-hover" data-toggle="tooltip" data-placement="top" title="Hapus"></i></a>';
                 $html .= Form::close();
@@ -115,5 +138,26 @@ class JobtitlesController extends \BaseController {
             })
             ->make();
 	}
+
+    /**
+     * API for model field frontend validation
+     * @return json
+     */
+    public function validateField() {
+        // get field to validate
+        $field = key(Input::query());
+
+        // create validator
+        $validator = Validator::make(Input::all(), Jobtitle::$rules);
+        $messages = $validator->messages();
+        if ($messages->has($field))
+        {
+            // return error message
+            return json_encode(array("error"=>$messages->first($field)));
+        } else {
+            // return true
+            return json_encode(array("success"=>''));
+        }
+    }
 
 }
