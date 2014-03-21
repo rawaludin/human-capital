@@ -99,12 +99,20 @@ class JobtitlesController extends \BaseController {
 	/**
 	 * Remove the specified resource from storage.
 	 *
-	 * @param  int  $id
+	 * @param  Jobtitle  $jobtitles
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy(Jobtitle $jobtitles)
 	{
-		//
+        // Get old title
+        $title = $jobtitles->title;
+
+		// delete jobtitle from database
+        $jobtitles->delete();
+
+        // redirect to index page
+        return Redirect::to('jobtitles')
+            ->with('success-message', 'Job Title <b>'.$title.'</b> berhasil dihapus.');
 	}
 
 	/**
