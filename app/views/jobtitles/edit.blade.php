@@ -26,6 +26,7 @@
                         'id'=>'jobprefix_id',
                         'placeholder' => "Pilih nama job prefix",
                         'parsley-required' => 'true',
+                        'class' => 'jobtitleSource',
                         'style'=>'width:100%')) }}
                 </div>
             </div>
@@ -39,6 +40,7 @@
                         'id'=>'functionalscope_id',
                         'placeholder' => "Pilih nama functional scope",
                         'parsley-required' => 'true',
+                        'class' => 'jobtitleSource',
                         'style'=>'width:100%')) }}
                 </div>
             </div>
@@ -99,6 +101,15 @@
         // select2
         $("#jobprefix_id").select2();
         $("#functionalscope_id").select2();
+        // generate job title
+        $('.jobtitleSource').change(function() {
+            var jobPrefix = $('#jobprefix_id option:selected').text();
+            var functionalScope = $('#functionalscope_id option:selected').text();
+            var jobTitle = jobPrefix + ' ' + functionalScope;
+            $('#title').val(jobTitle);
+            // trigger validation
+            $('#title').change();
+        });
     });
     </script>
 
