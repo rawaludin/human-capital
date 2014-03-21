@@ -7,48 +7,47 @@ This app demonstrate how I build crud app using laravel.
 This app has 3 tables:
 
 jobprefixes :
-+------------+------------------+------+-----+---------------------+----------------+
-| Field      | Type             | Null | Key | Default             | Extra          |
-+------------+------------------+------+-----+---------------------+----------------+
-| id         | int(10) unsigned | NO   | PRI | NULL                | auto_increment |
-| code       | varchar(255)     | NO   | UNI | NULL                |                |
-| title      | varchar(255)     | NO   | UNI | NULL                |                |
-| created_at | timestamp        | NO   |     | 0000-00-00 00:00:00 |                |
-| updated_at | timestamp        | NO   |     | 0000-00-00 00:00:00 |                |
-+------------+------------------+------+-----+---------------------+----------------+
+
+ Field      | Type             | Null | Key | Default             | Extra          
+----------- | ---------------- | ---- | --- | ------------------- | ---------------
+ id         | int(10) unsigned | NO   | PRI | NULL                | auto_increment 
+ code       | varchar(255)     | NO   | UNI | NULL                |                
+ title      | varchar(255)     | NO   | UNI | NULL                |                
+ created_at | timestamp        | NO   |     | 0000-00-00 00:00:00 |               
+ updated_at | timestamp        | NO   |     | 0000-00-00 00:00:00 |                
+
 
 functionalscopes :
-+------------+------------------+------+-----+---------------------+----------------+
-| Field      | Type             | Null | Key | Default             | Extra          |
-+------------+------------------+------+-----+---------------------+----------------+
-| id         | int(10) unsigned | NO   | PRI | NULL                | auto_increment |
-| code       | varchar(255)     | NO   | UNI | NULL                |                |
-| title      | varchar(255)     | NO   | UNI | NULL                |                |
-| created_at | timestamp        | NO   |     | 0000-00-00 00:00:00 |                |
-| updated_at | timestamp        | NO   |     | 0000-00-00 00:00:00 |                |
-+------------+------------------+------+-----+---------------------+----------------+
+ Field      | Type             | Null | Key | Default             | Extra          
+----------- | ---------------- | ---- | --- | ------------------- | ---------------
+ id         | int(10) unsigned | NO   | PRI | NULL                | auto_increment 
+ code       | varchar(255)     | NO   | UNI | NULL                |                
+ title      | varchar(255)     | NO   | UNI | NULL                |                
+ created_at | timestamp        | NO   |     | 0000-00-00 00:00:00 |                
+ updated_at | timestamp        | NO   |     | 0000-00-00 00:00:00 |               
+
 
 jobtitles :
-+--------------------+------------------+------+-----+---------------------+----------------+
-| Field              | Type             | Null | Key | Default             | Extra          |
-+--------------------+------------------+------+-----+---------------------+----------------+
-| id                 | int(10) unsigned | NO   | PRI | NULL                | auto_increment |
-| code               | varchar(255)     | NO   | UNI | NULL                |                |
-| title              | varchar(255)     | NO   | UNI | NULL                |                |
-| jobprefix_id       | int(10) unsigned | NO   | MUL | NULL                |                |
-| functionalscope_id | int(10) unsigned | NO   | MUL | NULL                |                |
-| status             | tinyint(1)       | NO   |     | NULL                |                |
-| created_at         | timestamp        | NO   |     | 0000-00-00 00:00:00 |                |
-| updated_at         | timestamp        | NO   |     | 0000-00-00 00:00:00 |                |
-+--------------------+------------------+------+-----+---------------------+----------------+
+
+ Field              | Type             | Null | Key | Default             | Extra          
+------------------- | ---------------- | ---- | --- | ------------------- | ---------------
+ id                 | int(10) unsigned | NO   | PRI | NULL                | auto_increment 
+ code               | varchar(255)     | NO   | UNI | NULL                |                
+ title              | varchar(255)     | NO   | UNI | NULL                |                
+ jobprefix_id       | int(10) unsigned | NO   | MUL | NULL                |                
+ functionalscope_id | int(10) unsigned | NO   | MUL | NULL                |                
+ status             | tinyint(1)       | NO   |     | NULL                |               
+ created_at         | timestamp        | NO   |     | 0000-00-00 00:00:00 |                
+ updated_at         | timestamp        | NO   |     | 0000-00-00 00:00:00 |                
+
 
 With relations one to many from jobprefixes to jobtitles and functionalscopes to jobtitles:
-+------------+--------------------+--------------------------------------+-----------------------+------------------------+
-| TABLE_NAME | COLUMN_NAME        | CONSTRAINT_NAME                      | REFERENCED_TABLE_NAME | REFERENCED_COLUMN_NAME |
-+------------+--------------------+--------------------------------------+-----------------------+------------------------+
-| jobtitles  | functionalscope_id | jobtitles_functionalscope_id_foreign | functionalscopes      | id                     |
-| jobtitles  | jobprefix_id       | jobtitles_jobprefix_id_foreign       | jobprefixes           | id                     |
-+------------+--------------------+--------------------------------------+-----------------------+------------------------+
+
+ TABLE_NAME | COLUMN_NAME        | CONSTRAINT_NAME                      | REFERENCED_TABLE_NAME | REFERENCED_COLUMN_NAME
+----------- | ------------------ | ------------------------------------ | --------------------- | -----------------------
+ jobtitles  | functionalscope_id | jobtitles_functionalscope_id_foreign | functionalscopes      | id                     
+ jobtitles  | jobprefix_id       | jobtitles_jobprefix_id_foreign       | jobprefixes           | id                     
+
 
 ## Feature
 - Backend validation on model
@@ -77,11 +76,11 @@ Its really simple to setup this app:
    - run `$ php artisan serve`
    - Access your app in http://localhost:8000/
 8. Or, you can run with [virtual host in apache](http://sawmac.com/xampp/virtualhosts/)
-9. Thats it, enjoy!
+9. Thats it, happy learning!
 
 
 ## What you will learn
-If you reading my [commit messages](https://github.com/rahmatawaludin/human-capital/commits/master), you will learn some things on how I develop laravel app:
+I add a LOT of comment on this app, make sure you read the source. Also, if you reading my [commit messages](https://github.com/rahmatawaludin/human-capital/commits/master), you will learn some things on how I develop laravel app:
 - Setup migrations
 - Setup model (with in-model validation)
 - Using Eloquent for accessing database and relationship
