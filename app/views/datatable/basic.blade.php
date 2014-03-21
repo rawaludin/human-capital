@@ -30,9 +30,17 @@
             @foreach ($callbacks as $k => $o)
             {{ json_encode($k) }}: {{ $o }},
             @endforeach
-            //"fnDrawCallback": function(oSettings) {
-            //    jQuery.uniform.update();
-            //}
+            "fnDrawCallback": function ( oSettings ) {
+                /* Need to redo the counters if filtered or sorted */
+                if ( oSettings.bSorted || oSettings.bFiltered )
+                {
+                    for ( var i=0, iLen=oSettings.aiDisplay.length ; i<iLen ; i++ )
+                    {
+                        $('td:eq(0)', oSettings.aoData[ oSettings.aiDisplay[i] ].nTr ).html( i+1 );
+                    }
+                }
+            },
+            "aaSorting": [[ 1, 'asc' ]]
         });
         // custom values are available via $values array
     });

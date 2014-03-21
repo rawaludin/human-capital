@@ -23,7 +23,8 @@
             ->setOptions('bProcessing', true)
             ->setOptions('aoColumnDefs',array(
                 array(
-                    'bVisible' => false,
+                    "bSortable" => false,
+                    'sTitle' => 'No',
                     'aTargets' => [0]
                 ),
                 array(
