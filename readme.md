@@ -60,7 +60,8 @@ With relations one to many from jobprefixes to jobtitles and functionalscopes to
 
 ## Setup
 Its really simple to setup this app:
-1. Clone or download zip this repository
+
+1. Clone or [download zip](https://github.com/rahmatawaludin/human-capital/archive/master.zip) this repository
 2. If you don't have composer, then install [composer](http://getcomposer.org).
 3. Install package for this app:
    - open terminal, go to app directory
@@ -69,14 +70,18 @@ Its really simple to setup this app:
 5. Setup database structure
    - open terminal, go to app directory
    - run `$ php artisan migrate`
+   ![migrate](https://raw.github.com/rahmatawaludin/human-capital/master/screenshot/migration.png "Migration")
 6. If needed, you can import sample data
    - open terminal, go to app directory
    - run `$ php artisan db:seed`
+   ![seed](https://raw.github.com/rahmatawaludin/human-capital/master/screenshot/seeding.png "Database Seeding")
 7. Run app with PHP builtin server:
    - open terminal, go to app directory
    - run `$ php artisan serve`
    - Access your app in http://localhost:8000/
-8. Or, you can run with [virtual host in apache](http://sawmac.com/xampp/virtualhosts/)
+   ![serve](https://raw.github.com/rahmatawaludin/human-capital/master/screenshot/serve.png "Run php builtin web server")
+   ![dashboard](https://raw.github.com/rahmatawaludin/human-capital/master/screenshot/dashboard.png "Dashboard")
+8. Or, you can run with [virtual host in apache](http://ddmboss.wordpress.com/2013/07/10/how-to-set-up-virtual-hosts-using-xampp/)
 9. Thats it, happy learning!
 
 
@@ -105,3 +110,6 @@ I add a LOT of comment on this app, make sure you read the source. Also, if you 
 1. fork
 2. patch
 3. pull!
+
+## Questions
+If you have any question, write [here](https://github.com/rahmatawaludin/human-capital/issues). 
