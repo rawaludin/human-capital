@@ -9,9 +9,13 @@ class DatabaseSeeder extends Seeder {
 	 */
 	public function run()
 	{
+		// disable query logging
+		DB::connection()->disableQueryLog();
 		Eloquent::unguard();
 
-		// $this->call('UserTableSeeder');
+		$this->call('JobprefixesTableSeeder');
+		$this->call('FunctionalscopesTableSeeder');
+		$this->call('JobtitlesTableSeeder');
 	}
 
 }
