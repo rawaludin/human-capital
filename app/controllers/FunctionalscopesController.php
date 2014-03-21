@@ -128,6 +128,22 @@ class FunctionalscopesController extends \BaseController {
 	 */
 	public function destroy(Functionalscope $functionalscopes)
 	{
+        // cek relasi ke jobtitle sebelum hapus functionalscopes, jika masih ada tampilkan
+        $functionalscopes->load('jobtitles');
+        if ($functionalscopes->jobtitles->count() > 0) {
+            $message = "Functional Scope ini masih berhubungan dengan Job title, silahkan hapus job title yang berhubungan :<ul>";
+            foreach ($functionalscopes->jobtitles as $jobtitle) {
+                $message .= '<li>';
+                $message .= Form::open(array('url' => "jobtitles/$jobtitle->id", 'role' => 'form', 'method'=>'delete','class'=>'form-inline','style="display:inline;"'));
+                $message .=   Form::submit('Delete', array('class' => 'hidden'));
+                $message .= $jobtitle->title.' <a href="#" data-confirm="Anda yakin akan menghapus Job Title '.$jobtitle->title.' ?" class="btn btn-xs btn-danger btn-rounded js-delete-confirm">Hapus</a>';
+                $message .= '</li>';
+            }
+            $message .= '</ul>';
+
+            return Redirect::back()->with('error-message', $message);
+        }
+
 		// Get old title for flash message
 		$title = $functionalscopes->title;
 

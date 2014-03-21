@@ -135,7 +135,7 @@ class JobtitlesController extends \BaseController {
         $jobtitles->delete();
 
         // redirect to index page
-        return Redirect::to('jobtitles')
+        return Redirect::back()
             ->with('success-message', 'Job Title <b>'.$title.'</b> berhasil dihapus.');
 	}
 
