@@ -123,7 +123,7 @@ class FunctionalscopesController extends \BaseController {
 	/**
 	 * Remove the specified resource from storage.
 	 *
-	 * @param  int  $id
+	 * @param  Functionalscope $functionalscopes
 	 * @return Response
 	 */
 	public function destroy(Functionalscope $functionalscopes)

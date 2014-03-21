@@ -2,7 +2,7 @@
 <html lang="en" class="app">
 <head>
   <meta charset="utf-8" />
-  <title>Dashboard | IDMS</title>
+  <title>Dashboard | Human Capital</title>
   <meta name="description" content="IDMS | Information and Data Management System" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}" type="text/css" />
@@ -32,7 +32,7 @@
           <i class="fa fa-bars"></i>
         </a>
         {{-- Logo --}}
-    <a href="#" class="navbar-brand" data-toggle="fullscreen"><img src="{{ asset('images/logo.png') }}" class="m-r-sm">IDMS</a>
+    <a href="#" class="navbar-brand" data-toggle="fullscreen"><img src="{{ asset('images/logo.png') }}" class="m-r-sm">Human Capital</a>
         {{-- Profile, only show on mobile --}}
         <a class="btn btn-link visible-xs" data-toggle="dropdown" data-target=".nav-user">
           <i class="fa fa-cog"></i>
@@ -95,29 +95,25 @@
                   {{-- BEGIN nav item --}}
                   <ul class="nav">
                     {{ HTML::bt_nav(array(
-
-                        // BEGIN Job Prefix
                         array(
                           'icon' => 'fa fa-group icon',
                           'icon-bg' => 'bg-warning',
                           'title' => 'Job Prefix',
-                          'url' => '#',
-                          'subnav' => array(
-                            array(
-                              'url' => '#',
-                              'title' => 'Daftar'
-                            ),
-                            array(
-                              'url' => '#',
-                              'title' => 'Functional Scope'
-                            ),
-                            array(
-                              'url' => '#',
-                              'title' => 'Job Title'
-                            )
-                          )
+                          'url' => route('jobprefixes.index')
                         ),
-                        // END Job Prefix
+                        array(
+                          'icon' => 'fa fa-group icon',
+                          'icon-bg' => 'bg-warning',
+                          'title' => 'Functional Scopes',
+                          'url' => route('functionalscopes.index')
+                        ),
+                        array(
+                          'icon' => 'fa fa-group icon',
+                          'icon-bg' => 'bg-warning',
+                          'title' => 'Job Titles',
+                          'url' => route('jobtitles.index')
+                        ),
+
                       )) }}
                   </ul>
                   {{-- END nav item --}}

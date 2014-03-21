@@ -78,7 +78,7 @@ class JobprefixesController extends \BaseController {
 	 * Show the form for editing the specified resource.
 	 * This form done by model binding.
 	 *
-	 * @param  int  $id
+	 * @param  Jobprefix $jobprefixes
 	 * @return Response
 	 */
 	public function edit(Jobprefix $jobprefixes)
@@ -125,7 +125,7 @@ class JobprefixesController extends \BaseController {
 	/**
 	 * Remove the specified resource from storage.
 	 *
-	 * @param  int  $id
+	 * @param  Jobprefix $jobprefixes
 	 * @return Response
 	 */
 	public function destroy(Jobprefix $jobprefixes)
