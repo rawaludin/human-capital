@@ -13,7 +13,7 @@
 
 Route::get('/', function()
 {
-	return View::make('hello');
+	return Redirect::route('jobprefixes.index');
 });
 // Resource controller
 Route::resource('jobprefixes', 'JobprefixesController');
