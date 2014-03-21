@@ -52,4 +52,24 @@
 
 @section('pagejs')
     <script src="{{ asset('js/datatables/jquery.dataTables.min.js') }}" cache="false"></script>
+    <script>
+    $(function() {
+        $('#DataTables_Table_0_length').css('display','inline-block');
+        $('<div id="filter_status" class="dataTables_length" style="display: inline-block;"><label>Saring berdasarkan <select size="1" name="filter_status" aria-controls="filter_status"><option value="all" selected="selected">Semua</option><option value="active">Aktif</option><option value="non-active">Tidak Aktif</option></select></label></div>').insertAfter('#DataTables_Table_0_length');
+        $('select[name="filter_status"]').change(function() {
+            var $oTable = $('#DataTables_Table_0').dataTable();
+            switch (this.value) {
+                case 'all' :
+                    $oTable.fnFilter('');
+                    break;
+                case 'active' :
+                    $oTable.fnFilter('checked="checked"', null, false, true, false, true);
+                    break;
+                case 'non-active' :
+                    $oTable.fnFilter('<input disabled="disabled" name="status" type="checkbox" value="status">', null, false, true, false, true);
+                    break;
+            }
+        });
+    });
+    </script>
 @stop

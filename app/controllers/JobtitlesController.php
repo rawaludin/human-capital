@@ -157,8 +157,8 @@ class JobtitlesController extends \BaseController {
             ->addColumn('status', function ($model) {
             	return Form::checkbox('status', 'status', $model->status, array('disabled'));
             })
-            ->searchColumns('title', 'jobprefix', 'functionalscope')
-            ->orderColumns('title', 'jobprefix', 'functionalscope')
+            ->searchColumns('code','title', 'jobprefix', 'functionalscope', 'status')
+            ->orderColumns('code', 'title', 'jobprefix', 'functionalscope', 'status')
             ->addColumn('action', function ($model) {
                 $html = '<a href='.route('jobtitles.edit', ['jobtitles'=>$model->id]).' class="m-l-sm"><i class="fa fa-edit fa-hover" data-toggle="tooltip" data-placement="top" title="Ubah"></i></a>';
                 $html .= Form::open(array('url' => "jobtitles/$model->id", 'role' => 'form', 'method'=>'delete','class'=>'form-inline','style="display:inline;"'));
