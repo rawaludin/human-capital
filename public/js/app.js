@@ -236,7 +236,7 @@ Date.now = Date.now || function() { return +new Date; };
     $(document).on('click.bs.dropdown.data-api', '.dropdown .on, .dropup .on', function (e) { e.stopPropagation() });
 
     // Confirmation before delete for current and future element
-    $(document).on('click', '.js-delete-confirm', function() {
+    $(document).on('click', '.js-delete-confirm', function(event) {
       console.log('clicked delete');
       event.preventDefault();
       var choice = confirm(this.getAttribute('data-confirm'));
